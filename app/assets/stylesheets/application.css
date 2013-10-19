@@ -1,0 +1,7 @@
+//= require bootstrap_and_overrides
+//= require scaffolds
+
+#main_cont{
+
+	margin-top: 90px ;
+}
