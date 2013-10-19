@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pageno: MyString
+  date: MyString
+  html: MyText
+  date_added: 2013-10-19 15:06:38
+
+two:
+  pageno: MyString
+  date: MyString
+  html: MyText
+  date_added: 2013-10-19 15:06:38

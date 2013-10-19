@@ -1,4 +1,16 @@
 Tnp::Application.routes.draw do
+  resources :links
+
+  resources :datapages
+
+  get "list/getdata"
+  get "list/index"
+  get "list/parsedata"
+  
+  resources :disps
+
+  root :to => "list#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
