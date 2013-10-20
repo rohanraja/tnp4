@@ -202,7 +202,7 @@ class ListController < ApplicationController
   def searchq
 
   	qry = params[:qry]
-  	links = Link.where("html LIKE '%#{qry}%'").take(8)
+  	links = Link.where("html LIKE '%#{qry}%'").take(80)
     if qry == "0"
       links = Link.find(:all, :order => "date_added desc", :limit => 10)
       qry = 'zzzzz'
