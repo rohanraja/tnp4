@@ -1,3 +1,31 @@
 // Place all the styles related to the List controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+li.active
+{
+	background-color: blue;
+}
+
+.alink
+{
+	border : 1px solid;
+	box-shadow: 6px 6px 5px #888888;
+}
+
+.well
+{
+	text-align : center;
+}
+
+.span8
+{
+	padding: 3px;
+}
+
+.span8 table
+{
+	background-color: white ;
+	z-index: 100;
+	box-shadow: 10px 10px 10px 10px #888888;
+}
