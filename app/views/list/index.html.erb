@@ -15,9 +15,17 @@
   
   </div><!--/span-->
 
-  <div class="span8" id="desc_cont">
+
+
+  <div class="span8" >
+
+     <a class="btn on_left" href="#prev" onclick="prev_heading()"><i class="icon-arrow-left icon-2x"></i></a>
+
+     <a class="btn pull-right on_right" href="#next" onclick="next_heading()"><i class="icon-arrow-right icon-2x"></i></a>
+
+     <div id="desc_cont"><h3>Click on a heading</h3></div>
    
-   <h3>Click on a heading</h3>
+   
     
   </div>
 
@@ -26,6 +34,25 @@
 
 
 <script type="text/javascript">
+
+
+function next_heading()
+{
+  if($('li.active').length > 0)
+    $('li.active').next().next().find('a').click();
+  else
+    $('#head_list li a').eq(0).click();
+
+}
+
+function prev_heading()
+{
+  if($('li.active').length > 0)
+    $('li.active').prev().prev().find('a').click();
+  else
+    $('#head_list li a').eq(0).click();
+
+}
 
 function searchq(str)
 {
