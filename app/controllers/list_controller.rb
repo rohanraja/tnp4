@@ -86,7 +86,7 @@ class ListController < ApplicationController
     :universal_newline => true       # Always break lines with \n
   }
   
-  	for i in 1..200
+  	for i in 1..24
 
 	  	url = "http://tp.iitkgp.ernet.in/notice/index.php?page=#{i}"
 
