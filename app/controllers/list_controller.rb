@@ -1,9 +1,14 @@
 class ListController < ApplicationController
+
+
+  before_filter :authenticate, :only => [:updatedata]
+
+
   def index
 
-  	l = Link.find(3)
-  	data = l.html
-  	@data = data.gsub(/Training & Placement Section - IIT Kharagpur/, '')
+  	#l = Link.find(3)
+  	#data = l.html
+  	@data = "SELECT"#data.gsub(/Training & Placement Section - IIT Kharagpur/, '')
   	@links = Link.find(:all, :order => "date_added desc", :limit => 10)
   end
 
@@ -79,6 +84,12 @@ class ListController < ApplicationController
 
   def updatedata
   	require 'open-uri'
+    require 'rubygems'
+    require 'mechanize'
+    agent = Mechanize.new
+
+
+
   	encoding_options = {
     :invalid           => :replace,  # Replace invalid byte sequences
     :undef             => :replace,  # Replace anything not defined in ASCII
@@ -86,7 +97,7 @@ class ListController < ApplicationController
     :universal_newline => true       # Always break lines with \n
   }
   
-  	for i in 1..24
+  	for i in 1..2
 
 	  	url = "http://tp.iitkgp.ernet.in/notice/index.php?page=#{i}"
 
@@ -138,6 +149,16 @@ class ListController < ApplicationController
 				  	data = data.encode Encoding.find('ASCII'), encoding_options
 				  	title =  lnks[i].text
 				  	title = title.encode Encoding.find('ASCII'), encoding_options
+
+            # agent.get("http://iitkgptnp.herokuapp.com/links/new")
+
+            # agent.page.forms[0]["link[pageno]"] = pageno
+            # agent.page.forms[0]["link[date]"] = curdate.text
+            # agent.page.forms[0]["link[html]"] = data
+            # agent.page.forms[0]["link[date_added]"] = curdate.text.to_datetime
+            # agent.page.forms[0]["link[title]"] = title
+  
+            #  agent.page.forms[0].submit
 
 				    d = Link.new(:title => title ,:pageno => pageno, :date => curdate.text , :html => data,  :date_added => curdate.text.to_datetime)
 				    d.save
@@ -202,7 +223,7 @@ class ListController < ApplicationController
   def searchq
 
   	qry = params[:qry]
-  	links = Link.where("html LIKE '%#{qry}%'").take(80)
+  	links = Link.where("html ILIKE '%#{qry}%'").take(80)
     if qry == "0"
       links = Link.find(:all, :order => "date_added desc", :limit => 10)
       qry = 'zzzzz'
@@ -210,11 +231,29 @@ class ListController < ApplicationController
 
   	@q = qry
 
+
   	render links 
 
   	#render :text => links.first.html
 
   end
+
+helper_method :logged_in?
+
+def logged_in?
+  session[:login]
+end
+
+def do_logout
+  session[:login] = nil
+end
+
+def authenticate
+  login = authenticate_or_request_with_http_basic do |username, password|
+    username == "rohan1020" && password == "rohan93"
+  end
+  session[:login] = login
+end
 
 
 
