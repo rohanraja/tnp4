@@ -194,9 +194,20 @@ class ListController < ApplicationController
 
     word = []
 
+    
+
   	if params[:qry]
   		@qry = params[:qry]
-      word = @data.scan(/#{@qry}/i)
+      word.concat(@data.scan(/#{@qry}/i))
+
+      words = @qry.split(' ')
+
+      words.each do |s|
+        if s.length > 1
+          word.concat(@data.scan(/#{s}/i))
+        end
+      end
+
   	else
   		@qry = "zzzz"
       word[0] = "zzz"
@@ -206,8 +217,11 @@ class ListController < ApplicationController
       word[0] = "zzz"
     end
   	
-  	
-  	@data = @data.gsub(/#{@qry}/i, '<mark>' + word[0] + '</mark>')
+  	word.each do |w|
+
+      @data = @data.gsub(/#{w}/, '<mark>' + w + '</mark>')
+
+    end
 
     respond_to do |format|
 
@@ -223,7 +237,23 @@ class ListController < ApplicationController
   def searchq
 
   	qry = params[:qry]
-  	links = Link.where("html ILIKE '%#{qry}%'").take(80)
+
+    words = qry.split(' ')
+
+    qrystr = "html ILIKE '%#{qry}%'"
+
+    words.each do |s|
+
+      if s.length > 1
+
+        qrystr += " OR html ILIKE '%#{s}%'" 
+      end
+
+    end
+
+  	#links = Link.where("html ILIKE '%#{qry}%'").take(80)
+    links = Link.where(qrystr).take(80)
+
     if qry == "0"
       links = Link.find(:all, :order => "date_added desc", :limit => 10)
       qry = 'zzzzz'
