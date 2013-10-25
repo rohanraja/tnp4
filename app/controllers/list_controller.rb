@@ -97,7 +97,7 @@ class ListController < ApplicationController
     :universal_newline => true       # Always break lines with \n
   }
   
-  	for i in 1..2
+  	for i in 201..600
 
 	  	url = "http://tp.iitkgp.ernet.in/notice/index.php?page=#{i}"
 
@@ -240,19 +240,19 @@ class ListController < ApplicationController
 
     words = qry.split(' ')
 
-    qrystr = "html ILIKE '%#{qry}%'"
+    qrystr = "html ILIKE '%#{words[0]}%'"
 
     words.each do |s|
 
       if s.length > 1
 
-        qrystr += " OR html ILIKE '%#{s}%'" 
+        qrystr += " AND html ILIKE '%#{s}%'" 
       end
 
     end
 
   	#links = Link.where("html ILIKE '%#{qry}%'").take(80)
-    links = Link.where(qrystr).take(80)
+    links = Link.order("date_added DESC").where(qrystr).take(80)
 
     if qry == "0"
       links = Link.find(:all, :order => "date_added desc", :limit => 10)
@@ -261,6 +261,23 @@ class ListController < ApplicationController
 
   	@q = qry
 
+    # links.each do |l|
+
+    #   cnt = 0
+
+    #   words.each do |s|
+    #    # puts "**&&**&&" + s
+
+    #     if l.html.scan(/#{s}/i).count > 0
+
+    #       cnt = cnt + l.html.scan(/#{s}/i).count
+
+    #     end
+
+    #   end
+
+    #   puts cnt.to_s
+    # end
 
   	render links 
 
