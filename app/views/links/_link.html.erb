@@ -1,2 +1,3 @@
-<li><%= link_to  highlight(link.title, @q) , send_desc_path(:link_id => link, :qry => @q), :class => 'alink', :remote => true, :onClick => "linkclick(this)" %></li>
+<li><%= link.date_added.to_time.strftime('%B %e, %Y') %>
+<%= link_to  highlight(link.title, @q) , send_desc_path(:link_id => link, :qry => @q), :class => 'alink', :remote => true, :onClick => "linkclick(this)" %></li>
 <li><br></li>
