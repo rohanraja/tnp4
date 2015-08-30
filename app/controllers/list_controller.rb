@@ -1,7 +1,7 @@
 class ListController < ApplicationController
 
 
-  before_filter :authenticate, :only => [:updatedata]
+  #before_filter :authenticate, :only => [:updatedata]
 
 
   def index
@@ -97,7 +97,7 @@ class ListController < ApplicationController
     :universal_newline => true       # Always break lines with \n
   }
   
-  	for i in 1..2
+  	for i in 1..200
 
 	  	url = "http://tp.iitkgp.ernet.in/notice/index.php?page=#{i}"
 
@@ -150,15 +150,15 @@ class ListController < ApplicationController
 				  	title =  lnks[i].text
 				  	title = title.encode Encoding.find('ASCII'), encoding_options
 
-            agent.get("http://tnpiitkgp.herokuapp.com/links/new")
+            # agent.get("http://tnpiitkgp.herokuapp.com/links/new")
 
-            agent.page.forms[0]["link[pageno]"] = pageno
-            agent.page.forms[0]["link[date]"] = curdate.text
-            agent.page.forms[0]["link[html]"] = data
-            agent.page.forms[0]["link[date_added]"] = curdate.text.to_datetime
-            agent.page.forms[0]["link[title]"] = title
+            # agent.page.forms[0]["link[pageno]"] = pageno
+            # agent.page.forms[0]["link[date]"] = curdate.text
+            # agent.page.forms[0]["link[html]"] = data
+            # agent.page.forms[0]["link[date_added]"] = curdate.text.to_datetime
+            # agent.page.forms[0]["link[title]"] = title
   
-            agent.page.forms[0].submit
+            # agent.page.forms[0].submit
 
 				    d = Link.new(:title => title ,:pageno => pageno, :date => curdate.text , :html => data,  :date_added => curdate.text.to_datetime)
 				    d.save

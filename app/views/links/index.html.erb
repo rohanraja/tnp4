@@ -1,6 +1,6 @@
 <%- model_class = Link -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1><hr><input onKeyUp = "searchq(this.value)" type="text" class="form-control" placeholder="Search">
 </div>
 <table class="table table-striped">
   <thead>
@@ -42,3 +42,44 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_link_path,
             :class => 'btn btn-primary' %>
+
+<div id="testdiv" style="display:none"></div>
+
+
+<script type="text/javascript">
+  
+  var maindata ;
+
+  function searchq(str)
+{
+
+  if(str.length > 0 || str == "")
+  {
+    if(str == "")
+      str = "0";
+
+    $.ajax({
+    async: "false",
+        type: "GET",
+
+  url: '/searcher/searchq/links/' + str, 
+  success: function(data)
+    {
+      console.log(data);
+
+      maindata = data ;
+
+      $('#testdiv').html(data);
+
+      $('tbody').html($('#testdiv').find('tbody').html());
+
+      $('#testdiv').html('');
+
+    //   $('#head_list li a').eq(0).click();
+
+    }});
+  }
+}
+
+
+</script>

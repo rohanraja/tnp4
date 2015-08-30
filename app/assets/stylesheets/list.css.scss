@@ -9,8 +9,8 @@ li.active
 
 .alink
 {
-	border : 1px solid;
-	box-shadow: 6px 6px 5px #888888;
+	border : 1px solid #cecece;
+	box-shadow: 3px 3px 3px #888888;
 }
 
 .well
@@ -33,23 +33,23 @@ li.active
 box-shadow: -4px 12px 48px #000000;
 }
 
-.span8 table {
--webkit-animation: cssAnimation 0.5s 1 ease;
--moz-animation: cssAnimation 0.5s 1 ease;
--o-animation: cssAnimation 0.5s 1 ease;
-}
-@-webkit-keyframes cssAnimation {
-from { -webkit-transform: rotate(0deg) scale(0.698) skew(1deg) translate(-188px); }
-to { -webkit-transform: rotate(0deg) scale(1.001) skew(1deg) translate(2px); }
-}
-@-moz-keyframes cssAnimation {
-from { -moz-transform: rotate(0deg) scale(0.698) skew(1deg) translate(-188px); }
-to { -moz-transform: rotate(0deg) scale(1.001) skew(1deg) translate(2px); }
-}
-@-o-keyframes cssAnimation {
-from { -o-transform: rotate(0deg) scale(0.698) skew(1deg) translate(-188px); }
-to { -o-transform: rotate(0deg) scale(1.001) skew(1deg) translate(2px); }
-}
+// .span8 table {
+// -webkit-animation: cssAnimation 0.5s 1 ease;
+// -moz-animation: cssAnimation 0.5s 1 ease;
+// -o-animation: cssAnimation 0.5s 1 ease;
+// }
+// @-webkit-keyframes cssAnimation {
+// from { -webkit-transform: rotate(0deg) scale(0.698) skew(1deg) translate(-188px); }
+// to { -webkit-transform: rotate(0deg) scale(1.001) skew(1deg) translate(2px); }
+// }
+// @-moz-keyframes cssAnimation {
+// from { -moz-transform: rotate(0deg) scale(0.698) skew(1deg) translate(-188px); }
+// to { -moz-transform: rotate(0deg) scale(1.001) skew(1deg) translate(2px); }
+// }
+// @-o-keyframes cssAnimation {
+// from { -o-transform: rotate(0deg) scale(0.698) skew(1deg) translate(-188px); }
+// to { -o-transform: rotate(0deg) scale(1.001) skew(1deg) translate(2px); }
+// }
 
 
 #desc_cont
@@ -65,4 +65,18 @@ to { -o-transform: rotate(0deg) scale(1.001) skew(1deg) translate(2px); }
 .on_right
 {
 	margin-right: 230px;
+}
+
+.row-fluid
+{
+	height: 600px;
+	margin-bottom: 15px;
+}
+.sidebar-nav ul
+{
+
+	//height : 100px;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	overflow : auto;
 }
