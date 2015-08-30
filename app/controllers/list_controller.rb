@@ -242,13 +242,13 @@ class ListController < ApplicationController
 
     words = qry.split(' ')
 
-    qrystr = "html ILIKE '%#{words[0]}%'"
+    qrystr = "html LIKE '%#{words[0]}%'"
 
     words.each do |s|
 
       if s.length > 1
 
-        qrystr += " AND html ILIKE '%#{s}%'" 
+        qrystr += " AND html LIKE '%#{s}%'" 
       end
 
     end
